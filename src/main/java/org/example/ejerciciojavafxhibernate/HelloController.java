@@ -5,13 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.ejerciciojavafxhibernate.models.Equipo;
-import org.hibernate.Session;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -47,9 +44,8 @@ public class HelloController implements Initializable {
                 return new SimpleStringProperty(String.valueOf(row.getValue().getNombre()));
             }
         });
-        cCategory.setCellValueFactory((row) -> {
-            return new SimpleStringProperty(String.valueOf(row.getValue().getCategoria()).toUpperCase());
-        });
+        cCategory.setCellValueFactory((row) -> new SimpleStringProperty(String.valueOf(row.getValue().getCategoria()).toUpperCase()));
+
         cAvailability.setCellValueFactory((row) -> {
             var availability = row.getValue().getDisponible();
             String output = availability ? "disponible" : "no disponible";
